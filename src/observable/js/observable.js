@@ -3,7 +3,10 @@ class Observable {
   constructor(subscribe) {
     this.observers = []
     this.operators = []
-    if (subscribe) setTimeout(subscribe, 0, this)
+    if (subscribe) {
+      const that = this
+      setTimeout(subscribe, 0, that)
+    }
   }
 
   subscribe(observer) {
