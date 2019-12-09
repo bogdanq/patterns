@@ -1,0 +1,36 @@
+.app {
+  border: 1px solid #000;
+  margin: 0 auto;
+  width: 800px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.basket {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.product_item {
+  border: 1px solid blue;
+  margin: 20px;
+  width: 150px;
+  padding: 5px;
+}
+
+.modal {
+  background: rgb(139, 230, 139);
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: none;
+}
+
+.modal_isOpen {
+  display: block;
+}
