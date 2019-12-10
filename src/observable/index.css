@@ -34,3 +34,7 @@ h1 {
 .modal_isOpen {
   display: block;
 }
+
+input {
+  display: block;
+}

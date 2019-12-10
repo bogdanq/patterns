@@ -3,29 +3,29 @@
 
 class StreamObservable extends Observable {
   constructor(subscribe) {
-    super(subscribe)
+    super(subscribe);
   }
 }
 
 class StreamObserver extends Observer {
   constructor() {
-    super()
-    this.observable = null
+    super();
+    this.observable = null;
   }
 
   update(data) {
-    console.log(`CharStreamObserver: update { data: ${data} }`)
+    console.log(`CharStreamObserver: update { data: ${data} }`);
   }
 }
 
-class StreamObserverSecond extends Observer {
+class BasketObserver extends Observer {
   constructor() {
-    super()
-    this.observable = null
+    super();
+    this.observable = null;
   }
 
   update(data) {
-    console.log(`StreamObserverSecond: update { data: ${data} }`)
+    console.log(`BasketObserver: update`);
   }
 }
 
