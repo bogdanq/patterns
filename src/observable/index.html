@@ -13,17 +13,22 @@
     </div>
     <div class="app">
       <h1>Products</h1>
-      <button data-id="1" class="product">product 1</button>
-      <button data-id="2" class="product">product 2</button>
-      <button data-id="3" class="product">product 3</button>
-      <h1>Basket</h1>
-      <input placeholder="enterText" class="action-input" />
-      <div class="basket">
-        <!-- <div data-id="2" class="product_item">
-          <h3>product</h3>
-          <button class="product_remove">remove</button>
-        </div> -->
+      <div class="wrapper">
+        <div class="product_wrapper">
+          <h3>product 1</h3>
+          <button data-id="1" class="product">add to basket</button>
+        </div>
+        <div class="product_wrapper">
+          <h3>product 2</h3>
+          <button data-id="2" class="product">add to basket</button>
+        </div>
+        <div class="product_wrapper">
+          <h3>product 3</h3>
+          <button data-id="3" class="product">add to basket</button>
+        </div>
       </div>
+      <h1>Basket (<span class="title">0</span>)</h1>
+      <div class="basket" />
     </div>
   </body>
   <script src="js/observable.js"></script>

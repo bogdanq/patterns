@@ -132,71 +132,94 @@
 //   }
 // }
 
-class Input {
+class ProductsObserver {
   constructor() {
     this.observable = null;
-    this.element = document.createElement("input");
+    this.favoriteProducts = [];
+    this.wrapper = document.querySelector(".basket");
   }
 
-  update({ value }) {
-    console.log("Observer1: update");
-    this.updateInputValue(value);
+  update({ node, type }) {
+    if (type === "add product to basket") {
+      console.log("ProductsObserver: update");
+      this.createNode(node);
+      this.render();
+    }
   }
 
-  updateInputValue(value) {
-    this.element.value = value;
+  createNode(node) {
+    node.classList.add("isBasket");
+    const actionButton = document.createElement("button");
+    actionButton.classList.add("product_in_basket");
+    actionButton.innerText = "remove";
+    this.favoriteProducts.push(node);
+    node.appendChild(actionButton);
+    this.init(actionButton);
+
+    observable.next({ type: "update node area", nodes: this.favoriteProducts });
   }
 
-  create() {
-    const wrapper = document.querySelector(".basket");
-    this.element.placeholder = "test";
-    this.element.disabled = true;
-    wrapper.appendChild(this.element);
+  init(actionButton) {
+    actionButton.addEventListener("click", e => {
+      const node = e.currentTarget.parentNode;
+      this.remove(node);
+    });
+  }
+
+  remove(node) {
+    const index = this.favoriteProducts.indexOf(node);
+    this.favoriteProducts.splice(index, 1);
+    this.render();
+
+    observable.next({ type: "update node area", nodes: this.favoriteProducts });
+  }
+
+  render() {
+    this.wrapper.innerHTML = "";
+    for (const product of this.favoriteProducts) {
+      this.wrapper.appendChild(product);
+    }
   }
 }
 
-class Parent {
+class Products {
   constructor() {
-    this.value = null;
+    this.products = document.querySelectorAll(".product");
   }
 
-  onChange(value) {
-    this.value = value;
-    observable.next(this);
+  init() {
+    for (const product of this.products) {
+      product.addEventListener("click", e => {
+        const node = e.target.parentNode;
+        observable.next({
+          type: "add product to basket",
+          node: node.cloneNode({ deep: true })
+        });
+      });
+    }
+  }
+}
+
+class AreaObserver {
+  constructor() {
+    this.observable = null;
+    this.title = document.querySelector(".title");
+  }
+
+  update({ type, nodes }) {
+    if (type === "update node area") {
+      this.title.innerHTML = "";
+      this.title.innerHTML = nodes.length;
+    }
   }
 }
 
 const observable = new Observable();
-const inputObserver = new Input();
-inputObserver.create();
+const productsObserver = new ProductsObserver();
+const areaObserver = new AreaObserver();
 
-// const filterCustom = predicate => ({ name: "filter", fn: predicate });
-// const mapCustom = callback => ({ name: "map", fn: callback });
-// const someProcessing = data => {
-//   const newData = { ...data, value: data.value.toUpperCase() };
-//   return newData;
-// };
+const product = new Products();
+product.init();
 
-// const destination = observable.pipe(
-//   filterCustom(data => true),
-//   mapCustom(data => data),
-//   someProcessing
-// );
-// destination.subscribe(inputObserver);
-
-observable
-  .filter(item => item !== "zalupa")
-  .map(item => {
-    const newItem = { ...item, value: item.value.toUpperCase() };
-    return newItem;
-  })
-  .subscribe(inputObserver);
-
-const parent = new Parent();
-
-const productsList = document.querySelectorAll(".product");
-const input = document.querySelector(".action-input");
-input.addEventListener("input", e => {
-  const value = e.currentTarget.value;
-  return parent.onChange(value);
-});
+observable.subscribe(areaObserver);
+observable.subscribe(productsObserver);

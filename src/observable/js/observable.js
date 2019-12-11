@@ -38,9 +38,6 @@ class Observable {
         observer.update(data);
       }
     }
-
-    // this.complete("next");
-    console.log("qwd");
   }
 
   complete(name) {

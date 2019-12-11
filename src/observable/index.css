@@ -38,3 +38,20 @@ h1 {
 input {
   display: block;
 }
+
+.wrapper {
+  display: flex;
+}
+.product_wrapper {
+  margin: 0 15px;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+/* .product_in_basket {
+  display: none;
+} */
+
+.isBasket .product {
+  display: none;
+}
