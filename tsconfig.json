@@ -12,7 +12,8 @@
     "module": "esnext",
     "outDir": "dist",
     "rootDir": "src",
-    "declaration": false
+    "declaration": false,
+    "experimentalDecorators": true
   },
   "exclude": ["node_modules"],
   "include": ["src"]

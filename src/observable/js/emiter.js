@@ -10,7 +10,7 @@ class EventEmiter {
     }
     this.subscribers[type].observers.push(listener);
 
-    return () => this.remove(type, listener);
+    return this;
   }
 
   once(type, listener) {
