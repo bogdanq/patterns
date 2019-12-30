@@ -54,7 +54,6 @@ class Form extends BaseComponent {
   private formName: string;
   private isValid: boolean;
   private formState: { [key: string]: string };
-  public mediator: Mediator;
 
   constructor(formName: string, mediator: Mediator) {
     super(mediator);
@@ -83,7 +82,6 @@ class Form extends BaseComponent {
 }
 
 class Field extends BaseComponent {
-  public mediator: Mediator;
   public name: string;
   private fieldState: string | null;
 
@@ -102,8 +100,6 @@ class Field extends BaseComponent {
 }
 
 class SubmitButton extends BaseComponent {
-  public mediator: Mediator;
-
   constructor(mediator: Mediator) {
     super(mediator);
     this.mediator = mediator;
