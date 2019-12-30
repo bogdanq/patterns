@@ -128,5 +128,14 @@ mediator.addListener("submitButton", submitButton);
 
 firstName.onChange("some string");
 lastName.onChange("some string");
-console.log("validate: ", form.validate());
+form.validate();
 submitButton.submitForm();
+
+/** RESULT
+  Form: addFieldToState -  first-name
+  Field: onChange -  first-name
+  Form: addFieldToState -  last-name
+  Field: onChange -  last-name
+  validate:  true
+  SubmitButton: submitForm {isValid: true, state: {…}}isValid: truestate: {first-name: "some string", last-name: "some string"}
+ */
