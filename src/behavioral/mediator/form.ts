@@ -133,5 +133,5 @@ submitButton.submitForm();
   Form: addFieldToState -  last-name
   Field: onChange -  last-name
   validate:  true
-  SubmitButton: submitForm {isValid: true, state: {…}}isValid: truestate: {first-name: "some string", last-name: "some string"}
+  SubmitButton: submitForm {isValid: true, state: {first-name: "some string", last-name: "some string"}}
  */
