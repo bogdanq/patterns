@@ -1,4 +1,4 @@
-# patterns
+# Design patterns
 
 ### Demos
 
